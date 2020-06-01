@@ -2,12 +2,13 @@
   <div
     class="progress"
     :class="{
-    hidden: hidden,
-    error: error
-  }"
-  :style="{
-    'width': `${percent}%`
-  }"/>
+      hidden: hidden,
+      error: error
+    }"
+    :style="{
+      width: `${percent}%`
+    }"
+  />
 </template>
 
 <script>

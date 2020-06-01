@@ -15,9 +15,9 @@ describe('ItemList.vue', () => {
     }
     const items = [{ id: 1 }, { id: 2 }, { id: 3 }]
     fetchListData.mockImplementationOnce(() => Promise.resolve(items))
-    const wrapper = shallowMount(ItemList, {mocks: {$bar}})
+    const wrapper = shallowMount(ItemList, { mocks: { $bar } })
     await flushPromises()
-    const Items = wrapper.findAll(Item)
+    const Items = wrapper.findAllComponents(Item)
     expect(Items).toHaveLength(items.length)
     Items.wrappers.forEach((wrapper, i) => {
       expect(wrapper.vm.item).toBe(items[i])
@@ -29,7 +29,7 @@ describe('ItemList.vue', () => {
       start: jest.fn(),
       finish: () => {}
     }
-    shallowMount(ItemList, {mocks: { $bar }})
+    shallowMount(ItemList, { mocks: { $bar } })
     expect($bar.start).toHaveBeenCalledTimes(1)
   })
 
@@ -39,7 +39,7 @@ describe('ItemList.vue', () => {
       start: () => {},
       finish: jest.fn()
     }
-    shallowMount(ItemList, {mocks: {$bar}})
+    shallowMount(ItemList, { mocks: { $bar } })
     await flushPromises()
 
     expect($bar.finish).toHaveBeenCalled()
@@ -52,7 +52,7 @@ describe('ItemList.vue', () => {
       fail: jest.fn()
     }
     fetchListData.mockImplementationOnce(() => Promise.reject())
-    shallowMount(ItemList, {mocks: {$bar}})
+    shallowMount(ItemList, { mocks: { $bar } })
     await flushPromises()
 
     expect($bar.fail).toHaveBeenCalled()
